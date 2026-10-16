@@ -1,0 +1,18 @@
+manifest_version: 1
+name: parking_ultrasonic
+version: 0.1.0
+project:
+  kind: electronics
+  id: f1b312ab-20a4-4850-89a3-d42a98fe6523
+components: []
+connections: []
+datasheets:
+  - id: ds_e3af5cfb3240009a5426
+    name: XLMDKVG59MCA
+    originalFilename: XLMDKVG59MCA.pdf
+    pageUrl: https://www.embedr.app/datasheets/ds_e3af5cfb3240009a5426
+    markdownUrl: https://www.embedr.app/api/datasheets/ds_e3af5cfb3240009a5426/markdown
+    searchUrl: https://www.embedr.app/api/datasheets/ds_e3af5cfb3240009a5426/search
+    chunkCount: 10
+    imageCount: 19
+    processedAt: 2026-10-16T00:13:55.731Z

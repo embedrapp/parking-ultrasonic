@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "id": "parking-case",
+  "name": "Parking display wall case",
+  "description": "Two-part FDM PETG wall case for the parking distance display board: front shell (transducer, OLED, stop-LED, power-LED and buzzer openings, bottom cable exit) and wall back plate (keyhole slots, PCB standoffs, HC-SR04 support posts, cable-tie bar). Joined by 4x M3x25 screws from the front.",
+  "source": "mechanical/parking-case.py",
+  "inputs": {
+    "board": {
+      "path": "pcb/layout/layout.kicad_pcb"
+    },
+    "files": [
+      "mechanical/imports/parking-board.step"
+    ]
+  },
+  "parameters": {
+    "wall": {
+      "type": "number",
+      "label": "Side wall thickness",
+      "value": 2.4,
+      "unit": "mm",
+      "min": 1.6,
+      "max": 4,
+      "step": 0.1
+    },
+    "front_thickness": {
+      "type": "number",
+      "label": "Front panel thickness",
+      "value": 2.5,
+      "unit": "mm",
+      "min": 1.6,
+      "max": 4,
+      "step": 0.1
+    },
+    "front_inner_z": {
+      "type": "number",
+      "label": "Front panel inner face height above board bottom",
+      "value": 17.0,
+      "unit": "mm",
+      "min": 15,
+      "max": 25,
+      "step": 0.1
+    },
+    "standoff_height": {
+      "type": "number",
+      "label": "PCB standoff height (back plate to board bottom)",
+      "value": 5.0,
+      "unit": "mm",
+      "min": 3,
+      "max": 10,
+      "step": 0.5
+    },
+    "plate_thickness": {
+      "type": "number",
+      "label": "Back plate thickness",
+      "value": 8.0,
+      "unit": "mm",
+      "min": 6,
+      "max": 10,
+      "step": 0.5
+    },
+    "board_clearance": {
+      "type": "number",
+      "label": "Board edge to inner wall clearance",
+      "value": 1.0,
+      "unit": "mm",
+      "min": 0.5,
+      "max": 3,
+      "step": 0.1
+    },
+    "fit_gap": {
+      "type": "number",
+      "label": "Shell-to-locating-rim gap",
+      "value": 0.3,
+      "unit": "mm",
+      "min": 0.1,
+      "max": 0.6,
+      "step": 0.05
+    },
+    "transducer_hole_d": {
+      "type": "number",
+      "label": "Transducer hole diameter",
+      "value": 17.0,
+      "unit": "mm",
+      "min": 16.2,
+      "max": 19,
+      "step": 0.1
+    },
+    "hcsr04_back_z": {
+      "type": "number",
+      "label": "HC-SR04 module PCB back face height above board bottom",
+      "value": 4.2,
+      "unit": "mm",
+      "min": 3,
+      "max": 9,
+      "step": 0.1
+    },
+    "oled_window_w": {
+      "type": "number",
+      "label": "OLED window width",
+      "value": 24.0,
+      "unit": "mm",
+      "min": 22,
+      "max": 27,
+      "step": 0.1
+    },
+    "oled_window_h": {
+      "type": "number",
+      "label": "OLED window height",
+      "value": 13.5,
+      "unit": "mm",
+      "min": 11,
+      "max": 19,
+      "step": 0.1
+    },
+    "oled_window_dy": {
+      "type": "number",
+      "label": "OLED window centre offset from module centre (+Y = away from header)",
+      "value": 0.5,
+      "unit": "mm",
+      "min": -4,
+      "max": 4,
+      "step": 0.1
+    },
+    "keyhole_head_d": {
+      "type": "number",
+      "label": "Keyhole head entry diameter",
+      "value": 9.0,
+      "unit": "mm",
+      "min": 7,
+      "max": 12,
+      "step": 0.1
+    },
+    "keyhole_slot_w": {
+      "type": "number",
+      "label": "Keyhole slot width (screw shank)",
+      "value": 4.5,
+      "unit": "mm",
+      "min": 3.5,
+      "max": 6,
+      "step": 0.1
+    },
+    "cable_notch_w": {
+      "type": "number",
+      "label": "Bottom cable exit width",
+      "value": 9.0,
+      "unit": "mm",
+      "min": 5,
+      "max": 14,
+      "step": 0.5
+    },
+    "show_reference": {
+      "type": "boolean",
+      "label": "Show board and module reference bodies",
+      "value": true
+    }
+  },
+  "assumptions": [
+    {
+      "id": "board-frame",
+      "label": "Board outline 64 x 66 mm, 1.62 mm thick, M3 holes at (+/-28, +/-29)",
+      "value": "64x66x1.62",
+      "unit": "mm",
+      "confidence": "measured",
+      "source": "pcb/layout/layout.kicad_pcb via exportPcbBoardStep frame"
+    },
+    {
+      "id": "hcsr04-envelope",
+      "label": "HC-SR04 module 45 x 20 mm PCB, ~15 mm total height, ~16 mm transducer cans on 26 mm centres",
+      "value": "45x20x15",
+      "unit": "mm",
+      "confidence": "datasheet",
+      "source": "SparkFun SEN-15569 product data (ds_2d01ab019f07b9d598f0); +/-2 mm build tolerance"
+    },
+    {
+      "id": "hcsr04-z",
+      "label": "HC-SR04 back face = socket pin centreline z 2.89 + 1.27 mm",
+      "value": "4.2",
+      "unit": "mm",
+      "confidence": "inferred",
+      "source": "mechanical/imports/parking-board.step occurrence bounds (socket body z 1.615-4.155); verify on the assembled board"
+    },
+    {
+      "id": "oled-stack",
+      "label": "OLED on 8.5 mm female header: module back at z 10.1, glass front ~13.1",
+      "value": "13.1",
+      "unit": "mm",
+      "confidence": "inferred",
+      "source": "Standard 2.54 mm female header 8.5 mm body; Adafruit 326 footprint glass outline 26.7 x 19.3 mm"
+    },
+    {
+      "id": "oled-active-area",
+      "label": "Window covers the 21.7 x 10.9 mm active area with margin; exact active-area offset not dimensioned by Adafruit",
+      "value": "24 x 13.5",
+      "unit": "mm",
+      "confidence": "assumed",
+      "source": "SSD1306 0.96in panel typical active area"
+    },
+    {
+      "id": "led-height",
+      "label": "5 mm stop LED soldered with long leads so its dome seats in the front hole",
+      "value": "dome flush with front",
+      "unit": "",
+      "confidence": "assumed",
+      "source": "Assembly instruction"
+    },
+    {
+      "id": "wall-screw",
+      "label": "Wall screws: 4 mm (#8) pan-head wood screws, head <= 8.5 mm dia, head left 3 mm proud of wall",
+      "value": "4",
+      "unit": "mm",
+      "confidence": "assumed",
+      "source": "Chosen design value"
+    },
+    {
+      "id": "case-screws",
+      "label": "4x M3x25 pan-head screws front-to-back, self-tapping into 2.6 mm PETG pilots; 4x M3x8 for the PCB",
+      "value": "M3",
+      "unit": "",
+      "confidence": "assumed",
+      "source": "Chosen design value"
+    },
+    {
+      "id": "lead-trim",
+      "label": "THT leads trimmed to <= 2.5 mm below board (5 mm standoffs)",
+      "value": "2.5",
+      "unit": "mm",
+      "confidence": "assumed",
+      "source": "Assembly instruction; KiCad buzzer model shows untrimmed 15 mm leads"
+    },
+    {
+      "id": "keyhole-lip",
+      "label": "Keyhole: 2.5 mm shank slot, 3 mm head pocket, 2.5 mm lip (8 mm plate)",
+      "value": "2.5",
+      "unit": "mm",
+      "confidence": "assumed",
+      "source": "Chosen design value; case + board + modules ~150 g"
+    }
+  ],
+  "checks": [
+    {
+      "id": "valid-solids",
+      "label": "Valid solids",
+      "required": true
+    },
+    {
+      "id": "board-fit",
+      "label": "Board and module envelopes clear walls, columns and front panel",
+      "required": true
+    },
+    {
+      "id": "dfam",
+      "label": "PETG FDM printability of both parts in their print orientation",
+      "required": true
+    }
+  ]
+}

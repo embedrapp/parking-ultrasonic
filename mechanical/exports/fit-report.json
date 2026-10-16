@@ -1,0 +1,45 @@
+{
+  "leaf_count": 38,
+  "parts": {
+    "front_shell": {
+      "volume_mm3": 35383.313238640105,
+      "valid": true,
+      "bounds": [
+        [
+          -35.4,
+          -44.9,
+          -5.0
+        ],
+        [
+          35.4,
+          58.9,
+          19.5
+        ]
+      ]
+    },
+    "back_plate": {
+      "volume_mm3": 59750.78736384899,
+      "valid": true,
+      "bounds": [
+        [
+          -35.4,
+          -44.9,
+          -13.0
+        ],
+        [
+          35.4,
+          58.9,
+          3.9000000000000004
+        ]
+      ]
+    }
+  },
+  "overlaps": [
+    {
+      "part": "back_plate",
+      "ref": "/model/ref_board/Buzzer_TDK_PS1240P02BT_D12_2mm_H6_5mm",
+      "volume_mm3": 3.318
+    }
+  ],
+  "printed_overlap": 0.0
+}

@@ -1,0 +1,18 @@
+"""Alpha & Omega AO3400A logic-level N-MOSFET, SOT-23 (1 G, 2 S, 3 D).
+
+Vgs(th) 0.65-1.45 V, Rds(on) < 48 mOhm at Vgs = 2.5 V: fully enhanced by a 3.3 V GPIO.
+"""
+
+G = io("G", Net)
+D = io("D", Net)
+S = io("S", Net)
+
+Component(
+    name="AO3400A",
+    prefix="Q",
+    symbol=Symbol(library="./symbols/NMOS_GSD.kicad_sym", name="NMOS_GSD"),
+    footprint=File("./footprints/SOT-23.kicad_mod"),
+    part=Part(mpn="AO3400A", manufacturer="Alpha & Omega Semiconductor"),
+    pins={"G": G, "D": D, "S": S},
+    properties={"package": "SOT-23"},
+)

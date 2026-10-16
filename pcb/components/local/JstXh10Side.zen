@@ -1,0 +1,34 @@
+"""JST S10B-XH-A(LF)(SN) 10-pin 2.50 mm XH side-entry header. Mates XHP-10 housing + SXH-001T-P0.6 crimps."""
+
+P1 = io("P1", Net)
+P2 = io("P2", Net)
+P3 = io("P3", Net)
+P4 = io("P4", Net)
+P5 = io("P5", Net)
+P6 = io("P6", Net)
+P7 = io("P7", Net)
+P8 = io("P8", Net)
+P9 = io("P9", Net)
+P10 = io("P10", Net)
+
+Component(
+    name="S10B_XH_A",
+    prefix="J",
+    symbol=Symbol(library="./symbols/Conn_01x10.kicad_sym", name="Conn_01x10"),
+    footprint=File("./footprints/JST_XH_S10B-XH-A_1x10_P2.50mm_Horizontal.kicad_mod"),
+    part=Part(mpn="S10B-XH-A(LF)(SN)", manufacturer="JST"),
+    datasheet="https://www.jst-mfg.com/product/pdf/eng/eXH.pdf",
+    pins={
+        "Pin_1": P1,
+        "Pin_2": P2,
+        "Pin_3": P3,
+        "Pin_4": P4,
+        "Pin_5": P5,
+        "Pin_6": P6,
+        "Pin_7": P7,
+        "Pin_8": P8,
+        "Pin_9": P9,
+        "Pin_10": P10,
+    },
+    properties={"package": "JST XH 1x10 side entry"},
+)

@@ -1,0 +1,19 @@
+"""SunLED XLMDKVG59MCA 5 mm red/green bicolor LED, common anode, white diffused.
+
+Datasheet pinout: 1 cathode red, 2 common anode, 3 cathode green; 2.54 mm pitch, 0.9 mm holes.
+"""
+
+A = io("A", Net)
+K_RED = io("K_RED", Net)
+K_GREEN = io("K_GREEN", Net)
+
+Component(
+    name="XLMDKVG59MCA",
+    prefix="D",
+    symbol=Symbol(library="./symbols/LED_Dual_KAK.kicad_sym", name="LED_Dual_KAK"),
+    footprint=File("./footprints/LED_D5.0mm-3.kicad_mod"),
+    part=Part(mpn="XLMDKVG59MCA", manufacturer="SunLED"),
+    datasheet="https://www.sunledusa.com/products/spec/XLMDKVG59MCA.pdf",
+    pins={"A": A, "K1": K_RED, "K2": K_GREEN},
+    properties={"package": "T-1 3/4 5 mm 3-lead radial"},
+)

@@ -1,0 +1,242 @@
+"""
+parking_ultrasonic: garage parking-aid distance-display add-on board.
+
+Carrier for a SparkFun SEN-15569 HC-SR04 and an Adafruit 326 SSD1306 OLED, plus a
+red/green stop LED and a passive piezo, all driven by an external 3.3 V or 5 V host
+over one 10-pin JST XH cable. See specs/parking-distance-display.md.
+
+Host cable J1 (JST XH, 2.50 mm):
+  1 GND   2 +5V   3 VIO (host logic rail, 3.3 V or 5 V)
+  4 SDA   5 SCL   6 TRIG   7 ECHO   8 LED_R   9 LED_G   10 BUZZ
+"""
+
+load("@stdlib/units.zen", "Voltage")
+
+Resistor = Module("@stdlib/generics/Resistor.zen")
+Capacitor = Module("@stdlib/generics/Capacitor.zen")
+Led = Module("@stdlib/generics/Led.zen")
+Tvs = Module("@stdlib/generics/Tvs.zen")
+MountingHole = Module("@stdlib/generics/MountingHole.zen")
+
+ADAFRUIT_326_SSD1306_OLED = Module("./components/adafruit-326-ssd1306-oled/zener/ADAFRUIT_326_SSD1306_OLED.zen")
+SPARKFUN_SEN_15569_HC_SR04 = Module("./components/sparkfun-sen-15569-hc-sr04/zener/SPARKFUN_SEN_15569_HC_SR04.zen")
+JstXh10Side = Module("./components/local/JstXh10Side.zen")
+Polyfuse1206 = Module("./components/local/Polyfuse1206.zen")
+Buffer1G125 = Module("./components/local/Buffer1G125.zen")
+AO3400A = Module("./components/local/AO3400A.zen")
+BicolorLed = Module("./components/local/BicolorLed.zen")
+PiezoPS1240 = Module("./components/local/PiezoPS1240.zen")
+
+# ---------------------------------------------------------------- nets
+GND = Ground("GND")
+V5_IN = Power("V5_IN", voltage=Voltage("5V"))  # host 5 V before protection
+V5 = Power("V5", voltage=Voltage("5V"))  # protected 5 V rail
+VIO = Power("VIO", voltage=Voltage("3.3V to 5V"))  # host logic rail
+
+SDA = Net("SDA")
+SCL = Net("SCL")
+TRIG_HOST = Net("TRIG_HOST")  # VIO-level trigger from host
+TRIG_5V = Net("TRIG_5V")  # 5 V trigger to HC-SR04
+ECHO_5V = Net("ECHO_5V")  # 5 V echo from HC-SR04
+ECHO_BUF = Net("ECHO_BUF")  # VIO-level echo before series resistor
+ECHO_HOST = Net("ECHO_HOST")  # VIO-level echo to host
+LED_R = Net("LED_R")
+LED_G = Net("LED_G")
+BUZZ = Net("BUZZ")
+
+# ---------------------------------------------------------------- host connector + protection
+JstXh10Side(
+    name="J1",
+    P1=GND,
+    P2=V5_IN,
+    P3=VIO,
+    P4=SDA,
+    P5=SCL,
+    P6=TRIG_HOST,
+    P7=ECHO_HOST,
+    P8=LED_R,
+    P9=LED_G,
+    P10=BUZZ,
+)
+
+# PTC in series; TVS after it so a reversed or over-voltage supply is clamped and trips the PTC.
+Polyfuse1206(name="F1", P1=V5_IN, P2=V5)
+Tvs(
+    name="D2",
+    package="DO-214AC",
+    direction="Unidirectional",
+    reverse_standoff_voltage=Voltage("5V"),
+    mpn="SMAJ5.0A",
+    manufacturer="Littelfuse",
+    A=GND,
+    K=V5,
+)
+Capacitor(name="C1", value="10uF", package="0805", mpn="CL21A106KOQNNNE", manufacturer="Samsung Electro-Mechanics", voltage=Voltage("16V"), dielectric="X5R", P1=V5, P2=GND)
+Capacitor(name="C2", value="100nF", package="0805", mpn="CL21B104KBCNNNC", manufacturer="Samsung Electro-Mechanics", voltage=Voltage("50V"), dielectric="X7R", P1=V5, P2=GND)
+Capacitor(name="C3", value="1uF", package="0805", mpn="CL21B105KOFNNNE", manufacturer="Samsung Electro-Mechanics", voltage=Voltage("16V"), dielectric="X7R", P1=VIO, P2=GND)
+
+# Power indicator: ~1.3 mA from 5 V
+PWR_LED_A = Net("PWR_LED_A")
+Resistor(name="R1", value="2.2kohm", package="0805", mpn="RC0805FR-072K2L", manufacturer="YAGEO", P1=V5, P2=PWR_LED_A)
+Led(
+    name="D3",
+    package="0805",
+    color="green",
+    mpn="LTST-C171KGKT",
+    manufacturer="Lite-On",
+    A=PWR_LED_A,
+    K=GND,
+)
+
+# ---------------------------------------------------------------- HC-SR04 and level shifting
+SPARKFUN_SEN_15569_HC_SR04(name="J2", VCC=V5, TRIG=TRIG_5V, ECHO=ECHO_5V, GND=GND)
+
+# TRIG: VIO -> 5 V. AHCT input VIH = 2.0 V at VCC 5 V, so a 3.3 V host drives it cleanly.
+Resistor(name="R2", value="100kohm", package="0805", mpn="RC0805FR-07100KL", manufacturer="YAGEO", P1=TRIG_HOST, P2=GND)
+Buffer1G125(name="U1", mpn="SN74AHCT1G125DBVR", OE=GND, A=TRIG_HOST, Y=TRIG_5V, VCC=V5, GND=GND)
+Capacitor(name="C4", value="100nF", package="0805", mpn="CL21B104KBCNNNC", manufacturer="Samsung Electro-Mechanics", voltage=Voltage("50V"), dielectric="X7R", P1=V5, P2=GND)
+
+# ECHO: 5 V -> VIO. LVC inputs are 5.5 V tolerant at any VCC; output swings to VIO.
+Resistor(name="R3", value="100kohm", package="0805", mpn="RC0805FR-07100KL", manufacturer="YAGEO", P1=ECHO_5V, P2=GND)
+Buffer1G125(name="U2", mpn="SN74LVC1G125DBVR", OE=GND, A=ECHO_5V, Y=ECHO_BUF, VCC=VIO, GND=GND)
+Capacitor(name="C5", value="100nF", package="0805", mpn="CL21B104KBCNNNC", manufacturer="Samsung Electro-Mechanics", voltage=Voltage("50V"), dielectric="X7R", P1=VIO, P2=GND)
+Resistor(name="R4", value="33ohm", package="0805", mpn="RC0805FR-0733RL", manufacturer="YAGEO", P1=ECHO_BUF, P2=ECHO_HOST)
+
+# ---------------------------------------------------------------- OLED (I2C, powered from VIO)
+ADAFRUIT_326_SSD1306_OLED(
+    name="DS1",
+    SDA=SDA,
+    SCL=SCL,
+    DC_SA0=NotConnected(),  # board default strap, I2C address 0x3D
+    RST=NotConnected(),  # onboard auto-reset
+    CS=NotConnected(),  # unused in I2C mode
+    V3V3=NotConnected(),  # module regulator output, unused
+    VIN=VIO,
+    GND=GND,
+)
+# Extra I2C pull-ups to the host logic rail for the cable run.
+Resistor(name="R5", value="4.7kohm", package="0805", mpn="RC0805FR-074K7L", manufacturer="YAGEO", P1=VIO, P2=SDA)
+Resistor(name="R6", value="4.7kohm", package="0805", mpn="RC0805FR-074K7L", manufacturer="YAGEO", P1=VIO, P2=SCL)
+
+# ---------------------------------------------------------------- stop LED (common anode, low-side switched from 5 V)
+LED_A = V5
+K_RED = Net("K_RED")
+K_GREEN = Net("K_GREEN")
+Q_RED_D = Net("Q_RED_D")
+Q_GRN_D = Net("Q_GRN_D")
+G_RED = Net("G_RED")
+G_GRN = Net("G_GRN")
+
+BicolorLed(name="D1", A=LED_A, K_RED=K_RED, K_GREEN=K_GREEN)
+# Red Vf 1.95 V: (5 - 1.95) / 220 = 13.9 mA. Green Vf 2.1 V: 13.2 mA.
+Resistor(name="R7", value="220ohm", package="0805", mpn="RC0805FR-07220RL", manufacturer="YAGEO", P1=K_RED, P2=Q_RED_D)
+Resistor(name="R8", value="220ohm", package="0805", mpn="RC0805FR-07220RL", manufacturer="YAGEO", P1=K_GREEN, P2=Q_GRN_D)
+
+Resistor(name="R9", value="100ohm", package="0805", mpn="RC0805FR-07100RL", manufacturer="YAGEO", P1=LED_R, P2=G_RED)
+Resistor(name="R10", value="100kohm", package="0805", mpn="RC0805FR-07100KL", manufacturer="YAGEO", P1=G_RED, P2=GND)
+AO3400A(name="Q1", G=G_RED, D=Q_RED_D, S=GND)
+
+Resistor(name="R11", value="100ohm", package="0805", mpn="RC0805FR-07100RL", manufacturer="YAGEO", P1=LED_G, P2=G_GRN)
+Resistor(name="R12", value="100kohm", package="0805", mpn="RC0805FR-07100KL", manufacturer="YAGEO", P1=G_GRN, P2=GND)
+AO3400A(name="Q2", G=G_GRN, D=Q_GRN_D, S=GND)
+
+# ---------------------------------------------------------------- piezo (host PWM tone, low-side switched from 5 V)
+BZ_N = Net("BZ_N")
+G_BZ = Net("G_BZ")
+PiezoPS1240(name="BZ1", POS=V5, NEG=BZ_N)
+Resistor(name="R13", value="1kohm", package="0805", mpn="RC0805FR-071KL", manufacturer="YAGEO", P1=V5, P2=BZ_N)  # recharges piezo when FET is off
+Resistor(name="R14", value="100ohm", package="0805", mpn="RC0805FR-07100RL", manufacturer="YAGEO", P1=BUZZ, P2=G_BZ)
+Resistor(name="R15", value="100kohm", package="0805", mpn="RC0805FR-07100KL", manufacturer="YAGEO", P1=G_BZ, P2=GND)
+AO3400A(name="Q3", G=G_BZ, D=BZ_N, S=GND)
+
+# ---------------------------------------------------------------- case mounting holes (M3, non-plated)
+MountingHole(name="H1", diameter="M3", plating="Mechanical")
+MountingHole(name="H2", diameter="M3", plating="Mechanical")
+MountingHole(name="H3", diameter="M3", plating="Mechanical")
+MountingHole(name="H4", diameter="M3", plating="Mechanical")
+
+Board(
+    name="parking_ultrasonic",
+    layout_path="layout",
+    layers=2,
+)
+
+# pcb:sch BZ1.PS1240P02BT x=1734.7580 y=1339.8500 rot=0
+# pcb:sch C1.C x=152.4000 y=266.7000 rot=0
+# pcb:sch C2.C x=2540.0000 y=1770.6000 rot=0
+# pcb:sch C3.C x=2540.0000 y=2068.0000 rot=0
+# pcb:sch C4.C x=2646.6800 y=1770.6000 rot=0
+# pcb:sch C5.C x=2646.6800 y=2068.0000 rot=0
+# pcb:sch D1.XLMDKVG59MCA x=957.7700 y=1127.7600 rot=0
+# pcb:sch D2.D x=485.6200 y=256.5400 rot=0
+# pcb:sch D3.LED x=247.6500 y=278.1300 rot=90
+# pcb:sch DS1.ADAFRUIT_326_SSD1306_OLED x=2806.7000 y=1092.2000 rot=0
+# pcb:sch F1.MF_NSMF050_2 x=630.6200 y=266.7000 rot=0
+# pcb:sch GND.1 x=152.4000 y=355.6000 rot=0
+# pcb:sch GND.2 x=215.9000 y=1358.9000 rot=0
+# pcb:sch GND.3 x=254.0000 y=177.8000 rot=0
+# pcb:sch GND.4 x=444.5000 y=1409.7000 rot=0
+# pcb:sch GND.5 x=558.8000 y=266.7000 rot=0
+# pcb:sch GND.6 x=635.0000 y=952.5000 rot=0
+# pcb:sch GND.7 x=635.0000 y=1460.5000 rot=0
+# pcb:sch GND.8 x=736.6000 y=596.9000 rot=180
+# pcb:sch GND.9 x=685.8000 y=1181.1000 rot=0
+# pcb:sch GND.10 x=1244.6000 y=1257.3000 rot=0
+# pcb:sch GND.11 x=1384.3000 y=1257.3000 rot=0
+# pcb:sch GND.12 x=1828.8000 y=1485.9000 rot=0
+# pcb:sch GND.13 x=1968.5000 y=1485.9000 rot=0
+# pcb:sch GND.14 x=2057.4000 y=1104.9000 rot=0
+# pcb:sch GND.15 x=2222.5000 y=1562.1000 rot=0
+# pcb:sch GND.16 x=2362.2000 y=1562.1000 rot=0
+# pcb:sch GND.17 x=2489.2000 y=1168.4000 rot=0
+# pcb:sch GND.18 x=2540.0000 y=1854.2000 rot=0
+# pcb:sch GND.19 x=2540.0000 y=2159.0000 rot=0
+# pcb:sch GND.20 x=2641.6000 y=1854.2000 rot=0
+# pcb:sch GND.21 x=2641.6000 y=2159.0000 rot=0
+# pcb:sch GND.22 x=2921.0000 y=1435.1000 rot=0
+# pcb:sch H1.MH x=2654.3000 y=152.4000 rot=0
+# pcb:sch H2.MH x=2764.0000 y=152.4000 rot=0
+# pcb:sch H3.MH x=2873.7000 y=152.4000 rot=0
+# pcb:sch H4.MH x=2983.4000 y=152.4000 rot=0
+# pcb:sch J1.S10B_XH_A x=2540.0000 y=1155.7000 rot=0
+# pcb:sch J2.SPARKFUN_SEN_15569_HC_SR04 x=266.7000 y=1270.0000 rot=0
+# pcb:sch Q1.AO3400A x=1319.3700 y=1117.6000 rot=0
+# pcb:sch Q2.AO3400A x=2298.3700 y=1422.4000 rot=0
+# pcb:sch Q3.AO3400A x=1906.7700 y=1346.2000 rot=0
+# pcb:sch R1.R x=363.2200 y=266.7000 rot=0
+# pcb:sch R2.R x=2060.4000 y=1016.0000 rot=0
+# pcb:sch R3.R x=458.1000 y=1320.8000 rot=0
+# pcb:sch R4.R x=2440.7000 y=1288.9200 rot=270
+# pcb:sch R5.R x=2452.0000 y=1193.8000 rot=0
+# pcb:sch R6.R x=2256.2000 y=1219.2000 rot=0
+# pcb:sch R7.R x=1164.8700 y=1136.5200 rot=270
+# pcb:sch R8.R x=2143.8700 y=1441.3200 rot=270
+# pcb:sch R9.R x=1461.7000 y=1149.4800 rot=90
+# pcb:sch R10.R x=1247.7700 y=1168.4000 rot=0
+# pcb:sch R11.R x=2440.7000 y=1454.2800 rot=90
+# pcb:sch R12.R x=2226.7700 y=1473.2000 rot=0
+# pcb:sch R13.R x=1663.1580 y=1346.2000 rot=0
+# pcb:sch R14.R x=2049.1000 y=1378.0800 rot=90
+# pcb:sch R15.R x=1835.1700 y=1397.0000 rot=0
+# pcb:sch U1.BUF x=546.1000 y=711.2000 rot=0
+# pcb:sch U2.BUF x=546.1000 y=1219.2000 rot=0
+# pcb:sch V5.1 x=165.1000 y=177.8000 rot=0
+# pcb:sch V5.2 x=228.6000 y=1257.3000 rot=0
+# pcb:sch V5.3 x=368.3000 y=177.8000 rot=0
+# pcb:sch V5.4 x=444.5000 y=254.0000 rot=0
+# pcb:sch V5.5 x=660.4000 y=355.6000 rot=0
+# pcb:sch V5.6 x=647.7000 y=647.7000 rot=0
+# pcb:sch V5.7 x=914.4000 y=1168.4000 rot=0
+# pcb:sch V5.8 x=1663.7000 y=1257.3000 rot=0
+# pcb:sch V5.9 x=1638.3000 y=1308.1000 rot=0
+# pcb:sch V5.10 x=2552.7000 y=1676.4000 rot=0
+# pcb:sch V5.11 x=2679.7000 y=1701.8000 rot=0
+# pcb:sch V5_IN.1 x=660.4000 y=203.2000 rot=0
+# pcb:sch V5_IN.2 x=2501.9000 y=1168.4000 rot=0
+# pcb:sch VIO.1 x=647.7000 y=1155.7000 rot=0
+# pcb:sch VIO.2 x=2260.6000 y=1130.3000 rot=0
+# pcb:sch VIO.3 x=2451.1000 y=1104.9000 rot=0
+# pcb:sch VIO.4 x=2501.9000 y=1193.8000 rot=0
+# pcb:sch VIO.5 x=2552.7000 y=1981.2000 rot=0
+# pcb:sch VIO.6 x=2654.3000 y=1981.2000 rot=0
+# pcb:sch VIO.7 x=2984.5000 y=1028.7000 rot=0

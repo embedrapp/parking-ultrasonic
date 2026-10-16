@@ -1,0 +1,18 @@
+"""TDK PS1240P02BT externally driven piezo transducer, 12.2 mm, 4 kHz resonance, 5 mm pitch.
+
+Pad 1 (+, marked terminal) goes to the more positive side of the drive.
+"""
+
+POS = io("POS", Net)
+NEG = io("NEG", Net)
+
+Component(
+    name="PS1240P02BT",
+    prefix="BZ",
+    symbol=Symbol(library="./symbols/Buzzer.kicad_sym", name="Buzzer"),
+    footprint=File("./footprints/Buzzer_TDK_PS1240P02BT_D12.2mm_H6.5mm.kicad_mod"),
+    part=Part(mpn="PS1240P02BT", manufacturer="TDK"),
+    datasheet="https://product.tdk.com/en/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf",
+    pins={"+": POS, "-": NEG},
+    properties={"package": "Radial 12.2 mm, 5 mm pitch"},
+)

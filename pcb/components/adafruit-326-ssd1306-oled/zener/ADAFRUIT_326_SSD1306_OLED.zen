@@ -1,0 +1,34 @@
+"""Canonical Embedr wrapper for Adafruit 326 0.96 inch 128x64 SSD1306 OLED Display."""
+
+SDA = io("SDA", Net)
+SCL = io("SCL", Net)
+DC_SA0 = io("DC_SA0", Net)
+RST = io("RST", Net)
+CS = io("CS", Net)
+V3V3 = io("V3V3", Power)
+VIN = io("VIN", Power)
+GND = io("GND", Ground)
+
+Component(
+    name="ADAFRUIT_326_SSD1306_OLED",
+    prefix="DS",
+    description="Adafruit PID 326 0.96 inch 128x64 monochrome SSD1306 OLED breakout with STEMMA QT / Qwiic I2C connectors, 1x8 through-hole header, I2C default configuration, and optional SPI wiring.",
+    symbol=Symbol(
+        library="./assets/Adafruit_326_SSD1306_OLED.kicad_sym",
+        name="Adafruit_326_SSD1306_OLED",
+    ),
+    footprint=File("./assets/Adafruit_326_SSD1306_OLED.kicad_mod"),
+    part=Part(mpn="326", manufacturer="Adafruit Industries"),
+    datasheet="https://cdn.embedr.app/components/adafruit-326-ssd1306-oled/datasheet_pdf/UG-2864HSWEG01.pdf",
+    pins={
+        "SDA": SDA,
+        "SCL": SCL,
+        "DC/SA0": DC_SA0,
+        "RST": RST,
+        "CS": CS,
+        "3V3": V3V3,
+        "VIN": VIN,
+        "GND": GND,
+    },
+    properties={"package": "0.96 inch 128x64 OLED breakout module with 1x8 2.54 mm header and STEMMA QT connectors"},
+)

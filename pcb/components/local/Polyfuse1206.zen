@@ -1,0 +1,15 @@
+"""Bourns MF-NSMF050-2 PTC resettable fuse, 1206: Ihold 0.5 A, Itrip 1.0 A, 13.2 V, R1max 0.70 ohm."""
+
+P1 = io("P1", Net)
+P2 = io("P2", Net)
+
+Component(
+    name="MF_NSMF050_2",
+    prefix="F",
+    symbol=Symbol(library="./symbols/Polyfuse.kicad_sym", name="Polyfuse"),
+    footprint=File("./footprints/Fuse_1206_3216Metric_Pad1.42x1.75mm_HandSolder.kicad_mod"),
+    part=Part(mpn="MF-NSMF050-2", manufacturer="Bourns"),
+    datasheet="https://www.bourns.com/docs/Product-Datasheets/mf-nsmf.pdf",
+    pins={"1": P1, "2": P2},
+    properties={"package": "1206"},
+)

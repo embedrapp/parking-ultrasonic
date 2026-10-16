@@ -1,0 +1,31 @@
+"""Single non-inverting buffer with active-low output enable, SOT-23-5 (DBV).
+
+Pinout (TI SN74LVC1G125 / SN74AHCT1G125 DBV): 1 OE#, 2 A, 3 GND, 4 Y, 5 VCC.
+"""
+
+mpn = config("mpn", str, default="SN74LVC1G125DBVR")
+_family = "sn74ahct1g125" if "AHCT" in mpn else "sn74lvc1g125"
+_datasheet = "https://www.ti.com/lit/ds/symlink/" + _family + ".pdf"
+
+OE = io("OE", Net)
+A = io("A", Net)
+Y = io("Y", Net)
+VCC = io("VCC", Power)
+GND = io("GND", Ground)
+
+Component(
+    name="BUF",
+    prefix="U",
+    symbol=Symbol(library="./symbols/Buffer_1G125.kicad_sym", name="Buffer_1G125"),
+    footprint=File("./footprints/SOT-23-5.kicad_mod"),
+    part=Part(mpn=mpn, manufacturer="Texas Instruments"),
+    pins={
+        "OE": OE,
+        "A": A,
+        "Y": Y,
+        "VCC": VCC,
+        "GND": GND,
+    },
+    datasheet=_datasheet,
+    properties={"package": "SOT-23-5"},
+)

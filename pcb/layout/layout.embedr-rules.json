@@ -1,0 +1,37 @@
+{
+  "netClasses": [
+    {
+      "name": "Power",
+      "nets": [
+        "V5_IN",
+        "V5",
+        "GND",
+        "VIO"
+      ],
+      "trackWidthMm": 0.5
+    }
+  ],
+  "profile": {
+    "id": "pcbway-standard-2layer-1oz",
+    "revision": "2026-09-26.1",
+    "manufacturer": "PCBWay",
+    "process": "standard-rigid-2layer-1oz"
+  },
+  "fabricatorLimits": {
+    "trackWidthMm": 0.127,
+    "clearanceMm": 0.127,
+    "viaDrillMm": 0.3,
+    "annularRingMm": 0.15,
+    "holeToHoleMm": 0.5,
+    "minSlotWidthMm": 0.8,
+    "copperEdgeMm": 0.3
+  },
+  "limits": {
+    "trackWidthMm": 0.127,
+    "clearanceMm": 0.127,
+    "viaDrillMm": 0.3,
+    "annularRingMm": 0.15,
+    "holeToHoleMm": 0.5,
+    "copperEdgeMm": 0.3
+  }
+}

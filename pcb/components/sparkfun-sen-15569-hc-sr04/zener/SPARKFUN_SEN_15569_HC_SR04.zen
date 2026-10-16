@@ -1,0 +1,26 @@
+"""Canonical Embedr wrapper for SparkFun SEN-15569 HC-SR04 Ultrasonic Distance Sensor."""
+
+VCC = io("VCC", Power)
+TRIG = io("TRIG", Net)
+ECHO = io("ECHO", Net)
+GND = io("GND", Ground)
+
+Component(
+    name="SPARKFUN_SEN_15569_HC_SR04",
+    prefix="J",
+    description="SparkFun SEN-15569 5 V HC-SR04 ultrasonic distance sensor module with a 4-pin VCC/TRIG/ECHO/GND interface, 2 cm to 4 m measurement range, and 10 us trigger pulse timing.",
+    symbol=Symbol(
+        library="./assets/Conn_01x04.kicad_sym",
+        name="Conn_01x04",
+    ),
+    footprint=File("./assets/HCSR04_Socket_1x04_P2.54mm_Horizontal_PinRev.kicad_mod"),
+    part=Part(mpn="SEN-15569", manufacturer="SparkFun Electronics"),
+    datasheet="https://cdn.embedr.app/components/sparkfun-sen-15569-hc-sr04/datasheet_pdf/HCSR04.pdf",
+    pins={
+        "Pin_1": VCC,
+        "Pin_2": TRIG,
+        "Pin_3": ECHO,
+        "Pin_4": GND,
+    },
+    properties={"package": "HC-SR04 module plugged into Sullins PPPC041LGBN-RC right-angle 1x4 socket", "socket_mpn": "PPPC041LGBN-RC"},
+)

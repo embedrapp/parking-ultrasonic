@@ -1,0 +1,13 @@
+[workspace]
+repository = "github.com/embedr/parking_ultrasonic"
+pcb-version = "0.4"
+
+[board]
+name = "parking_ultrasonic"
+path = "parking_ultrasonic.zen"
+description = "Embedr electronics workspace"
+
+[dependencies]
+"github.com/embedr/parking_ultrasonic/components/adafruit-326-ssd1306-oled" = "0.1.0"
+"github.com/embedr/parking_ultrasonic/components/local" = "0.1.0"
+"github.com/embedr/parking_ultrasonic/components/sparkfun-sen-15569-hc-sr04" = "0.1.0"

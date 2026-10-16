@@ -1,0 +1,667 @@
+{
+  "version": 2,
+  "source": "zener-evaluation",
+  "sourceFile": "/Users/rishabhsinha/EmbedrProjects/parking_ultrasonic/pcb/parking_ultrasonic.zen",
+  "generatedAt": "2026-10-16T01:55:07.749Z",
+  "displayCurrency": "USD",
+  "buildQty": 1,
+  "items": [
+    {
+      "quantity": 1,
+      "references": [
+        "BZ1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.BZ1.PS1240P02BT"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "Radial 12.2 mm, 5 mm pitch",
+      "mount": "",
+      "manufacturer": "TDK",
+      "mpn": "PS1240P02BT",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "Buzzer, polarized",
+      "datasheet": "https://product.tdk.com/en/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf",
+      "configuration": "Configured",
+      "itemKey": "9b4162b42f452813c6365fa7"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "C1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.C1.C"
+      ],
+      "populate": true,
+      "value": "10uF 16V X5R",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL21A106KOQNNNE",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "10uF 16V X5R",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "fcb03de49b7c2774a8722422",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 10 uF 16 V+ X5R/X7R 0805 MLCC",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.517Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 3,
+      "references": [
+        "C2",
+        "C4",
+        "C5"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.C2.C",
+        "parking_ultrasonic.zen:<root>.C4.C",
+        "parking_ultrasonic.zen:<root>.C5.C"
+      ],
+      "populate": true,
+      "value": "100nF 50V X7R",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL21B104KBCNNNC",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "100nF 50V X7R",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "1b649fc2a7c4db02858e2ca2",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 100 nF 16 V+ X7R 0805 MLCC",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.519Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "C3"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.C3.C"
+      ],
+      "populate": true,
+      "value": "1uF 16V X7R",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL21B105KOFNNNE",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "1uF 16V X7R",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "dc1a983654c3690221ba29bf",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1 uF 16 V+ X7R 0805 MLCC",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.520Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "D1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.D1.XLMDKVG59MCA"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "T-1 3/4 5 mm 3-lead radial",
+      "mount": "",
+      "manufacturer": "SunLED",
+      "mpn": "XLMDKVG59MCA",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "Dual LED, common anode on pin 2",
+      "datasheet": "https://www.sunledusa.com/products/spec/XLMDKVG59MCA.pdf",
+      "configuration": "Configured",
+      "itemKey": "3adfe3fb9773702557b9f2eb"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "D2"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.D2.D"
+      ],
+      "populate": true,
+      "value": "5V TVS Diode",
+      "package": "DO-214AC",
+      "mount": "",
+      "manufacturer": "Littelfuse",
+      "mpn": "SMAJ5.0A",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "5V TVS Diode",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "2464a46e2a00b000dbabcdd0"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "D3"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.D3.LED"
+      ],
+      "populate": true,
+      "value": "LED GREEN",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "Lite-On",
+      "mpn": "LTST-C171KGKT",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "LED GREEN",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "ee8b1333b2f5afda9da9156a"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "DS1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.DS1.ADAFRUIT_326_SSD1306_OLED"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "0.96 inch 128x64 OLED breakout module with 1x8 2.54 mm header and STEMMA QT connectors",
+      "mount": "",
+      "manufacturer": "Adafruit Industries",
+      "mpn": "326",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "Adafruit PID 326 0.96 inch 128x64 monochrome SSD1306 OLED breakout with STEMMA QT / Qwiic I2C connectors, 1x8 through-hole header, I2C default configuration, and optional SPI wiring.",
+      "datasheet": "https://cdn.embedr.app/components/adafruit-326-ssd1306-oled/datasheet_pdf/UG-2864HSWEG01.pdf",
+      "configuration": "Configured",
+      "itemKey": "771c04789e70b3d597f008a1"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "F1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.F1.MF_NSMF050_2"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "1206",
+      "mount": "",
+      "manufacturer": "Bourns",
+      "mpn": "MF-NSMF050-2",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "Resettable fuse, polymeric positive temperature coefficient",
+      "datasheet": "https://www.bourns.com/docs/Product-Datasheets/mf-nsmf.pdf",
+      "configuration": "Configured",
+      "itemKey": "82128e3b20a83c3542659a4f"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "J1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.J1.S10B_XH_A"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "JST XH 1x10 side entry",
+      "mount": "",
+      "manufacturer": "JST",
+      "mpn": "S10B-XH-A(LF)(SN)",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "Generic connector, single row, 01x10, script generated (kicad-library-utils/schlib/autogen/connector/)",
+      "datasheet": "https://www.jst-mfg.com/product/pdf/eng/eXH.pdf",
+      "configuration": "Configured",
+      "itemKey": "bf3eee24eb2d9c48bc3d5b8a"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "J2"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.J2.SPARKFUN_SEN_15569_HC_SR04"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "HC-SR04 module plugged into Sullins PPPC041LGBN-RC right-angle 1x4 socket",
+      "mount": "",
+      "manufacturer": "SparkFun Electronics",
+      "mpn": "SEN-15569",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "SparkFun SEN-15569 5 V HC-SR04 ultrasonic distance sensor module with a 4-pin VCC/TRIG/ECHO/GND interface, 2 cm to 4 m measurement range, and 10 us trigger pulse timing.",
+      "datasheet": "https://cdn.embedr.app/components/sparkfun-sen-15569-hc-sr04/datasheet_pdf/HCSR04.pdf",
+      "configuration": "Configured",
+      "itemKey": "af33e2f706e28eda8516a086"
+    },
+    {
+      "quantity": 3,
+      "references": [
+        "Q1",
+        "Q2",
+        "Q3"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.Q1.AO3400A",
+        "parking_ultrasonic.zen:<root>.Q2.AO3400A",
+        "parking_ultrasonic.zen:<root>.Q3.AO3400A"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "SOT-23",
+      "mount": "",
+      "manufacturer": "Alpha & Omega Semiconductor",
+      "mpn": "AO3400A",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "30V Vds, 5.7A Id, N-Channel MOSFET, SOT-23",
+      "datasheet": "http://www.aosmd.com/pdfs/datasheet/AO3400A.pdf",
+      "configuration": "Configured",
+      "itemKey": "054955013c8cf012a3e0701c"
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "R1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.R1.R"
+      ],
+      "populate": true,
+      "value": "2.2k",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0805FR-072K2L",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "2.2k",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "1b5beabaefa35498efe23e02",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1% 0805 thick-film",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.522Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 5,
+      "references": [
+        "R2",
+        "R3",
+        "R10",
+        "R12",
+        "R15"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.R2.R",
+        "parking_ultrasonic.zen:<root>.R3.R",
+        "parking_ultrasonic.zen:<root>.R10.R",
+        "parking_ultrasonic.zen:<root>.R12.R",
+        "parking_ultrasonic.zen:<root>.R15.R"
+      ],
+      "populate": true,
+      "value": "100k",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0805FR-07100KL",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "100k",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "b89517f644043eb0044ccb82",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1% 0805 thick-film",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.523Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "R4"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.R4.R"
+      ],
+      "populate": true,
+      "value": "33",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0805FR-0733RL",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "33",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "b72c62eec300ef80c745aa73",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1% 0805 thick-film",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.524Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 2,
+      "references": [
+        "R5",
+        "R6"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.R5.R",
+        "parking_ultrasonic.zen:<root>.R6.R"
+      ],
+      "populate": true,
+      "value": "4.7k",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0805FR-074K7L",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "4.7k",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "23c7e4303bfff0bb262e4519",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1% 0805 thick-film",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.525Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 2,
+      "references": [
+        "R7",
+        "R8"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.R7.R",
+        "parking_ultrasonic.zen:<root>.R8.R"
+      ],
+      "populate": true,
+      "value": "220",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0805FR-07220RL",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "220",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "9546faa42c72c59a1aa858df",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1% 0805 thick-film",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.527Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 3,
+      "references": [
+        "R9",
+        "R11",
+        "R14"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.R9.R",
+        "parking_ultrasonic.zen:<root>.R11.R",
+        "parking_ultrasonic.zen:<root>.R14.R"
+      ],
+      "populate": true,
+      "value": "100",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0805FR-07100RL",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "100",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "6192c35726e4249f7b138cb0",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1% 0805 thick-film",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.529Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "R13"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.R13.R"
+      ],
+      "populate": true,
+      "value": "1k",
+      "package": "0805",
+      "mount": "",
+      "manufacturer": "YAGEO",
+      "mpn": "RC0805FR-071KL",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "1k",
+      "datasheet": "",
+      "configuration": "Configured",
+      "itemKey": "e5f7e15873fb58d02cf70bc6",
+      "sourcing": {
+        "mount": "smt",
+        "note": "Any 1% 0805 thick-film",
+        "allowSubstitution": true,
+        "updatedAt": "2026-10-16T01:54:38.530Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "U1"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.U1.BUF"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "SOT-23-5",
+      "mount": "",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74AHCT1G125DBVR",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "Single Buffer Gate Tri-State, Low-Voltage CMOS",
+      "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf",
+      "configuration": "Configured",
+      "itemKey": "3406fdba1953097d1ee647cf",
+      "sourcing": {
+        "datasheet": "https://www.ti.com/lit/ds/symlink/sn74ahct1g125.pdf",
+        "mount": "smt",
+        "note": "TRIG level shifter VIO->5 V; AHCT VIH 2.0 V at VCC 5 V",
+        "updatedAt": "2026-10-16T01:44:45.306Z",
+        "updatedBy": "agent"
+      }
+    },
+    {
+      "quantity": 1,
+      "references": [
+        "U2"
+      ],
+      "zenerPaths": [
+        "parking_ultrasonic.zen:<root>.U2.BUF"
+      ],
+      "populate": true,
+      "value": "",
+      "package": "SOT-23-5",
+      "mount": "",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC1G125DBVR",
+      "matcher": "",
+      "supplier": "",
+      "supplierPartNumber": "",
+      "sourceUrl": "",
+      "lifecycle": "",
+      "qualifications": [],
+      "alternatives": [],
+      "description": "Single Buffer Gate Tri-State, Low-Voltage CMOS",
+      "datasheet": "https://www.ti.com/lit/ds/symlink/sn74lvc1g125.pdf",
+      "configuration": "Configured",
+      "itemKey": "640ea96dd439c90541338a16"
+    }
+  ],
+  "summary": {
+    "lineItems": 21,
+    "componentCount": 33,
+    "populatedCount": 33,
+    "configuredCount": 33,
+    "needsDetailsCount": 0,
+    "sourcedCount": 0,
+    "dnpCount": 0
+  },
+  "sourceMtimeMs": 1792170609786.999
+}

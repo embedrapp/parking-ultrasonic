@@ -1,0 +1,283 @@
+(footprint "Adafruit_326_SSD1306_OLED"
+	(version 20241229)
+	(generator "codex-component-library-populator")
+	(generator_version "1")
+	(layer "F.Cu")
+	(descr "Adafruit PID 326 0.96 inch 128x64 SSD1306 OLED breakout, STEMMA QT, I2C default. Derived from Adafruit EagleCAD board Adafruit 0.96in 128x64 OLED STEMMA QT.")
+	(tags "Adafruit 326 SSD1306 OLED 128x64 0.96 I2C STEMMA QT Qwiic")
+	(property "Reference" "DS**"
+		(at 0 -17.5 0)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "Adafruit_326_SSD1306_OLED"
+		(at 0 17.5 0)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" "https://www.adafruit.com/datasheets/UG-2864HSWEG01.pdf"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" "Adafruit PID 326 0.96 inch 128x64 SSD1306 OLED breakout module"
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -14.605 -15.875)
+		(end 14.605 15.875)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.SilkS")
+	)
+	(fp_rect
+		(start -14.605 -15.875)
+		(end 14.605 15.875)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.Fab")
+	)
+	(fp_rect
+		(start -13.353 -8.202)
+		(end 13.35 11.058)
+		(stroke
+			(width 0.12)
+			(type dash)
+		)
+		(fill no)
+		(layer "F.Fab")
+	)
+	(fp_rect
+		(start -3.1 -5.536)
+		(end 3.1 -1.286)
+		(stroke
+			(width 0.1)
+			(type dash)
+		)
+		(fill no)
+		(layer "F.Fab")
+	)
+	(fp_rect
+		(start -14.065 -1.485)
+		(end -9.815 4.615)
+		(stroke
+			(width 0.1)
+			(type dash)
+		)
+		(fill no)
+		(layer "F.Fab")
+	)
+	(fp_rect
+		(start 9.815 -1.485)
+		(end 14.065 4.615)
+		(stroke
+			(width 0.1)
+			(type dash)
+		)
+		(fill no)
+		(layer "F.Fab")
+	)
+	(fp_text user "0.96in 128x64 SSD1306 OLED"
+		(at 0 14.2 0)
+		(layer "F.Fab")
+		(effects
+			(font
+				(size 0.9 0.9)
+				(thickness 0.12)
+			)
+		)
+	)
+	(fp_text user "SDA"
+		(at 8.89 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "SCL"
+		(at 6.35 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "DC"
+		(at 3.81 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "RST"
+		(at 1.27 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "CS"
+		(at -1.27 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "3V3"
+		(at -3.81 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "VIN"
+		(at -6.35 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_text user "GND"
+		(at -8.89 10.9 90)
+		(layer "F.SilkS")
+		(effects
+			(font
+				(size 0.75 0.75)
+				(thickness 0.1)
+			)
+		)
+	)
+	(fp_rect
+		(start -15.105 -16.375)
+		(end 15.105 16.375)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+	)
+	(pad "1" thru_hole circle
+		(at 8.89 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "2" thru_hole circle
+		(at 6.35 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "3" thru_hole circle
+		(at 3.81 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "4" thru_hole circle
+		(at 1.27 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "5" thru_hole circle
+		(at -1.27 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "6" thru_hole circle
+		(at -3.81 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "7" thru_hole circle
+		(at -6.35 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "8" thru_hole circle
+		(at -8.89 13.335)
+		(size 1.778 1.778)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "" np_thru_hole circle
+		(at -12.065 13.335)
+		(size 2.5 2.5)
+		(drill 2.5)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "" np_thru_hole circle
+		(at 12.065 13.335)
+		(size 2.5 2.5)
+		(drill 2.5)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "" np_thru_hole circle
+		(at -12.065 -13.335)
+		(size 2.5 2.5)
+		(drill 2.5)
+		(layers "*.Cu" "*.Mask")
+	)
+	(pad "" np_thru_hole circle
+		(at 12.065 -13.335)
+		(size 2.5 2.5)
+		(drill 2.5)
+		(layers "*.Cu" "*.Mask")
+	)
+)

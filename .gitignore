@@ -1,0 +1,70 @@
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Embedr local state
+.embedr/
+.embedr_chat/
+.embedr-board/
+.versions/
+.history/
+
+# PCB runtime and generated evaluations
+.pcb/
+*.pcb-lsp.json
+snapshot.*.json
+*.net
+*.log
+
+# KiCad local state and backups
+*.kicad_prl
+*.lck
+~*.lck
+fp-info-cache
+*-backups/
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*.kicad_pro-bak
+*.sch-bak
+*.pro-bak
+*.bak
+*.bak.*
+*.bak_*
+*.bck
+*.tmp
+*.000
+*.backup
+*.backup.*
+_autosave-*
+*.pre_*
+*.pre-*
+*.before-*
+*-rescue.lib
+*-save.pro
+*-save.kicad_pcb
+*backup*.kicad_pcb
+*backup*.kicad_sch
+*backup*.kicad_pro
+*.kicad_*.*backup*
+
+# Secrets
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Editors and operating systems
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Generic build outputs
+node_modules/
+dist/
+build/
+out/
